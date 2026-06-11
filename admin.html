@@ -146,6 +146,23 @@ window.saveNumber = function(){
 const number =
 document.getElementById("number").value;
 
+const whatsapp =
+document.getElementById("whatsapp").value;
+
+set(ref(db, "lottery"), {
+
+number: number,
+whatsapp: whatsapp
+
+});
+
+alert("Updated Successfully");
+
+}
+
+const number =
+document.getElementById("number").value;
+
 set(ref(db, "lottery"), {
 number: number
 });
