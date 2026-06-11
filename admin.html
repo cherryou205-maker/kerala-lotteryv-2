@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel</title>
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
 
 <style>
 
@@ -34,6 +32,7 @@ margin-top:10px;
 font-size:18px;
 border:none;
 border-radius:5px;
+box-sizing:border-box;
 }
 
 button{
@@ -45,6 +44,7 @@ background:green;
 color:white;
 border:none;
 border-radius:5px;
+cursor:pointer;
 }
 
 </style>
@@ -70,9 +70,7 @@ Login
 
 </div>
 
-<div
-id="panel"
-style="display:none;">
+<div id="panel" style="display:none;">
 
 <h2>Update Number</h2>
 
@@ -91,39 +89,35 @@ Save Number
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
 getDatabase,
 ref,
 set
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
 
-apiKey: "PASTE_API_KEY",
+apiKey: "AIzaSyB9HOvSm1BCOeg4uZGGXekneJtl6bPvzHw",
 
-authDomain: "PASTE_DOMAIN",
+authDomain: "jackpot-95a64.firebaseapp.com",
 
-databaseURL: "PASTE_DB_URL",
+databaseURL: "https://jackpot-95a64-default-rtdb.firebaseio.com",
 
-projectId: "PASTE_PROJECT_ID",
+projectId: "jackpot-95a64",
 
-storageBucket: "PASTE_BUCKET",
+storageBucket: "jackpot-95a64.firebasestorage.app",
 
-messagingSenderId: "PASTE_ID",
+messagingSenderId: "319234479146",
 
-appId: "PASTE_APP_ID"
+appId: "1:319234479146:web:1366505c43418c7e0b5f53"
 
 };
 
-const app =
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const db =
-getDatabase(app);
+const db = getDatabase(app);
 
 window.login = function(){
 
@@ -132,11 +126,9 @@ document.getElementById("password").value;
 
 if(pass === "12345"){
 
-document.getElementById("loginBox")
-.style.display = "none";
+document.getElementById("loginBox").style.display = "none";
 
-document.getElementById("panel")
-.style.display = "block";
+document.getElementById("panel").style.display = "block";
 
 }else{
 
@@ -152,9 +144,7 @@ const number =
 document.getElementById("number").value;
 
 set(ref(db, "lottery"), {
-
 number: number
-
 });
 
 alert("Updated Successfully");
