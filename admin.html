@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Admin Panel</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<style>
+
+body{
+background:#111;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+color:white;
+}
+
+.box{
+background:#222;
+padding:30px;
+border-radius:10px;
+width:300px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+font-size:18px;
+border:none;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+font-size:18px;
+background:green;
+color:white;
+border:none;
+border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Admin Login</h2>
+
+<div id="loginBox">
+
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<button onclick="login()">
+Login
+</button>
+
+</div>
+
+<div
+id="panel"
+style="display:none;">
+
+<h2>Update Number</h2>
+
+<input
+type="text"
+id="number"
+placeholder="Enter Number">
+
+<button onclick="saveNumber()">
+Save Number
+</button>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+set
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey: "PASTE_API_KEY",
+
+authDomain: "PASTE_DOMAIN",
+
+databaseURL: "PASTE_DB_URL",
+
+projectId: "PASTE_PROJECT_ID",
+
+storageBucket: "PASTE_BUCKET",
+
+messagingSenderId: "PASTE_ID",
+
+appId: "PASTE_APP_ID"
+
+};
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getDatabase(app);
+
+window.login = function(){
+
+const pass =
+document.getElementById("password").value;
+
+if(pass === "12345"){
+
+document.getElementById("loginBox")
+.style.display = "none";
+
+document.getElementById("panel")
+.style.display = "block";
+
+}else{
+
+alert("Wrong Password");
+
+}
+
+}
+
+window.saveNumber = function(){
+
+const number =
+document.getElementById("number").value;
+
+set(ref(db, "lottery"), {
+
+number: number
+
+});
+
+alert("Updated Successfully");
+
+}
+
+</script>
+
+</body>
+</html>
