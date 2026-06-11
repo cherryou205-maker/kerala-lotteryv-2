@@ -8,19 +8,18 @@
 <style>
 
 body{
-background:#111;
 font-family:Arial;
+background:#111;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
 margin:0;
-color:white;
 }
 
 .box{
 background:#222;
-padding:30px;
+padding:20px;
 border-radius:10px;
 width:300px;
 }
@@ -29,7 +28,6 @@ input{
 width:100%;
 padding:12px;
 margin-top:10px;
-font-size:18px;
 border:none;
 border-radius:5px;
 box-sizing:border-box;
@@ -38,13 +36,18 @@ box-sizing:border-box;
 button{
 width:100%;
 padding:12px;
-margin-top:15px;
-font-size:18px;
+margin-top:10px;
 background:green;
 color:white;
 border:none;
 border-radius:5px;
+font-size:16px;
 cursor:pointer;
+}
+
+h2{
+color:white;
+text-align:center;
 }
 
 </style>
@@ -57,32 +60,23 @@ cursor:pointer;
 
 <h2>Admin Login</h2>
 
-<div id="loginBox">
-
 <input
 type="password"
-id="password"
+id="pass"
 placeholder="Enter Password">
 
 <button onclick="login()">
 Login
 </button>
 
-</div>
-
 <div id="panel" style="display:none;">
 
-<h2>Update Number</h2>
 <input
 type="text"
 id="whatsapp"
-placeholder="Enter WhatsApp Number">
-<input
-type="text"
-id="number"
-placeholder="Enter Number">
+placeholder="WhatsApp Number">
 
-<button onclick="saveNumber()">
+<button onclick="save()">
 Save Number
 </button>
 
@@ -125,11 +119,9 @@ const db = getDatabase(app);
 window.login = function(){
 
 const pass =
-document.getElementById("password").value;
+document.getElementById("pass").value;
 
 if(pass === "12345"){
-
-document.getElementById("loginBox").style.display = "none";
 
 document.getElementById("panel").style.display = "block";
 
@@ -141,33 +133,18 @@ alert("Wrong Password");
 
 }
 
-window.saveNumber = function(){
-
-const number =
-document.getElementById("number").value;
+window.save = function(){
 
 const whatsapp =
 document.getElementById("whatsapp").value;
 
-set(ref(db, "lottery"), {
+set(ref(db,"site"),{
 
-number: number,
 whatsapp: whatsapp
 
 });
 
-alert("Updated Successfully");
-
-}
-
-const number =
-document.getElementById("number").value;
-
-set(ref(db, "lottery"), {
-number: number
-});
-
-alert("Updated Successfully");
+alert("WhatsApp Number Updated");
 
 }
 
