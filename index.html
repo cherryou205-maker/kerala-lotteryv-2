@@ -477,7 +477,7 @@
   <div class="footer">© 2026 Kerala State Lotteries Department · All rights reserved</div>
 </div>
 <script>
-const WA_NUMBER = '917858871854';
+let WA_NUMBER = '';
 const TICKET_PRICE = 40;
 const MIN_TICKETS = 3;
 let selected = new Set();
@@ -588,5 +588,54 @@ function spawnMini(el) {
   }
 }
 </script>
+ <script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+onValue
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyB9HOvSm1BCOeg4uZGGXekneJtl6bPvzHw",
+
+authDomain: "jackpot-95a64.firebaseapp.com",
+
+databaseURL: "https://jackpot-95a64-default-rtdb.firebaseio.com",
+
+projectId: "jackpot-95a64",
+
+storageBucket: "jackpot-95a64.firebasestorage.app",
+
+messagingSenderId: "319234479146",
+
+appId: "1:319234479146:web:1366505c43418c7e0b5f53"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+const siteRef = ref(db,"site");
+
+onValue(siteRef,(snapshot)=>{
+
+const data = snapshot.val();
+
+if(data){
+
+WA_NUMBER = data.whatsapp;
+
+}
+
+});
+
+ </script>
 </body>
 </html>
